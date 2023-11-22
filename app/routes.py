@@ -22,6 +22,17 @@ def sub():
         return jsonify({'result': result})
     else:
         return jsonify({'error': 'Invalid input'}), 400
+
+@app.route('/mul', methods=['GET'])
+def mul():
+    a = request.args.get('a', type=int)
+    b = request.args.get('b', type=int)
+
+    if a is not None and b is not None:
+        result = a * b
+        return jsonify({'result': result})
+    else:
+        return jsonify({'error': 'Invalid input'}), 400
     
 @app.route('/div', methods=['GET'])
 def div():
