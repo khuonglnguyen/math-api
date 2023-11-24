@@ -44,3 +44,15 @@ def div():
         return jsonify({'result': result})
     else:
         return jsonify({'error': 'Invalid input'}), 400
+
+@app.route('/login', methods=['GET'])
+def login():
+    username = request.args.get('username')
+    password = request.args.get('password')
+
+    if username == 'admin' and password == 'admin':
+        result = True
+        return jsonify({'result': result})
+    else:
+        result = False
+        return jsonify({'error': result}), 400
