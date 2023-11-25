@@ -53,6 +53,9 @@ def login():
     if username == 'admin' and password == 'admin':
         result = True
         return jsonify({'result': result})
+    if username == 'admin' or password == 'admin':
+        result = False
+        return jsonify({'resule': result}), 401
     else:
         result = False
         return jsonify({'error': result}), 400
