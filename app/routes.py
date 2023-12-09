@@ -67,10 +67,8 @@ def ptb2():
     b = request.args.get('b', type=int)
     c = request.args.get('c', type=int)
 
-    delta = b*b - 4 * ( a * c)
-    x1 =(-b+math.sqrt(delta))/2*a
-    x2 = (-b-math.sqrt(delta))/2*a
-
+    delta = b*b - (4 * a * c)
+    
     if a == 0 and b == 0:
         return jsonify({'message': 'Pt vô số nghiệm'})
     if a == 0 and b != 0:
@@ -81,4 +79,6 @@ def ptb2():
         if delta == 0:
             return jsonify({'messgae': f'PT có nghiệm kép: x1 = x2 = {-b/2*a}'})
         if delta > 0:
+            x1 =(-b+math.sqrt(delta))/2*a
+            x2 = (-b-math.sqrt(delta))/2*a
             return jsonify({'messgae': f'PT có hai nghiệm phân biệt: x1 = {x1}, x2 = {x2}'})
