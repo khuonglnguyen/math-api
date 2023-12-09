@@ -1,5 +1,6 @@
 from app import app
 from flask import request, jsonify
+import math
 
 @app.route('/add', methods=['GET'])
 def add():
@@ -59,3 +60,25 @@ def login():
     else:
         result = False
         return jsonify({'error': result}), 400
+    
+@app.route('/ptb2', methods=['GET'])
+def ptb2():
+    a = request.args.get('a', type=int)
+    b = request.args.get('b', type=int)
+    c = request.args.get('c', type=int)
+
+    delta = b*b - (4 * a * c)
+    
+    if a == 0 and b == 0:
+        return jsonify({'message': 'Pt vô số nghiệm'})
+    if a == 0 and b != 0:
+        return jsonify({'message': f'x = {-c/b}'}), 401
+    if a != 0:
+        if delta < 0:
+            return jsonify({'message': 'Pt vô nghiệm'})
+        if delta == 0:
+            return jsonify({'messgae': f'PT có nghiệm kép: x1 = x2 = {-b/2*a}'})
+        if delta > 0:
+            x1 =(-b+math.sqrt(delta))/2*a
+            x2 = (-b-math.sqrt(delta))/2*a
+            return jsonify({'messgae': f'PT có hai nghiệm phân biệt: x1 = {x1}, x2 = {x2}'})
