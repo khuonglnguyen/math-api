@@ -84,5 +84,11 @@ def ptb2():
             x2 = (-b-math.sqrt(delta))/2*a
             return jsonify({'messgae': f'PT có hai nghiệm phân biệt: x1 = {x1}, x2 = {x2}'})
         
+
+
+@app.route('/test', methods=['GET'])
+def test():
+    return jsonify({'message': 'Test'}), 200
+        
 if __name__ == "__main__":
     app.run(debug=True)
