@@ -26,7 +26,6 @@ jobs:
             echo "::set-output name=should_deploy::false"
           fi
 
-jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     needs: check_commit
