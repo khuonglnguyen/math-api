@@ -93,6 +93,15 @@ def test():
 @app.route('/hello-world', methods=['GET'])
 def helloWorld():
     return jsonify({'message': 'Hello-world'}), 200
+
+@app.route('/sosanhso',methods=['GET'])
+def sosanhso():
+    a = request.args.get('a', type=int)
+    b = request.args.get('b', type=int)
+    if a == b:
+        return jsonify({'result': 'Same'})
+    if a != b:
+        return jsonify({ 'result': 'Not implement'})
         
 if __name__ == "__main__":
     app.run(debug=True)
