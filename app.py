@@ -89,6 +89,10 @@ def ptb2():
 @app.route('/test', methods=['GET'])
 def test():
     return jsonify({'message': 'Test'}), 200
+
+@app.route('/hello-world', methods=['GET'])
+def helloWorld():
+    return jsonify({'message': 'Hello-world'}), 200
         
 if __name__ == "__main__":
     app.run(debug=True)
