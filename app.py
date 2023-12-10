@@ -1,6 +1,7 @@
-from app import app
-from flask import request, jsonify
+from flask import Flask, request, jsonify
 import math
+
+app = Flask(__name__)
 
 @app.route('/add', methods=['GET'])
 def add():
@@ -82,3 +83,6 @@ def ptb2():
             x1 =(-b+math.sqrt(delta))/2*a
             x2 = (-b-math.sqrt(delta))/2*a
             return jsonify({'messgae': f'PT có hai nghiệm phân biệt: x1 = {x1}, x2 = {x2}'})
+        
+if __name__ == "__main__":
+    app.run(debug=True)
