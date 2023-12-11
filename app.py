@@ -1,5 +1,6 @@
 from flask import Flask, request, jsonify
 import math
+import datetime
 
 app = Flask(__name__)
 
@@ -102,6 +103,15 @@ def sosanhso():
         return jsonify({'result': 'Same'})
     if a != b:
         return jsonify({ 'result': 'Not implement'})
-        
+    
+@app.route('/year-now',methods=['GET'])
+def yearNow():
+    Year_now = datetime.datetime.now().year
+    year_Now = request.args.get('year_Now', type=int)
+
+    if year_Now is not None:
+        year_Now = Year_now
+    return jsonify({'result': f'{Year_now}'})
+
 if __name__ == "__main__":
     app.run(debug=True)
