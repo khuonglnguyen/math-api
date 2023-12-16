@@ -113,5 +113,12 @@ def yearNow():
         year_Now = Year_now
     return jsonify({'result': f'{Year_now}'})
 
+@app.route('/sqrt',methods=['GET'])
+def sqrt():
+    number = request.args.get('number', type=int)
+
+    if number == 1:
+        return jsonify({'result': '1'})
+
 if __name__ == "__main__":
     app.run(debug=True)
