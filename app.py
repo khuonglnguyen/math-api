@@ -1,5 +1,6 @@
+from click import Parameter
 from flask import Flask, request, jsonify
-from flask_parameter_validation import ValidateParameters, Query
+from flask_parameter_validation import ValidateParameters, Query, Parameter
 import math
 import datetime
 
@@ -115,7 +116,6 @@ def yearNow():
     return jsonify({'result': f'{Year_now}'})
 
 @app.route('/sqrt', methods=['GET'])
-@ValidateParameters()
 def sqrt(number: float = Query(True)):
         
         number = request.args.get('number', type=float)
