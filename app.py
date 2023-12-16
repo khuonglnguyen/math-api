@@ -1,4 +1,5 @@
 from flask import Flask, request, jsonify
+from flask_parameter_validation import ValidateParameters, Query
 import math
 import datetime
 
@@ -114,11 +115,16 @@ def yearNow():
     return jsonify({'result': f'{Year_now}'})
 
 @app.route('/sqrt', methods=['GET'])
-def sqrt():
-    number = request.args.get('number', type=float)
-    number_sqrt = math.sqrt(number)
+@ValidateParameters()
+def sqrt(number: float = Query(True)):
+        
+        number = request.args.get('number', type=float)
 
-    return jsonify({'result': f'{number_sqrt}'})
-
+        if number < 0:
+            return jsonify({'error': 'Invalid input: Please provide a non-negative number'}), 400
+        else:
+            number_sqrt = math.sqrt(number)
+            return jsonify({'result': f'{number_sqrt}'}), 200
+        
 if __name__ == "__main__":
     app.run(debug=True)
