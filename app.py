@@ -1,6 +1,5 @@
-from click import Parameter
 from flask import Flask, request, jsonify
-from flask_parameter_validation import ValidateParameters, Query, Parameter
+from flask_parameter_validation import Query
 import math
 import datetime
 
@@ -125,6 +124,15 @@ def sqrt(number: float = Query(True)):
         else:
             number_sqrt = math.sqrt(number)
             return jsonify({'result': f'{number_sqrt}'}), 200
+
+@app.route('/giaithua', methods=['GET'])
+def giaithua():
         
+        number = request.args.get('number', type=int)
+        giaithua = 1
+        for i in range(1, number + 1):
+            giaithua *= i
+        return jsonify({'result': giaithua})
+
 if __name__ == "__main__":
     app.run(debug=True)
