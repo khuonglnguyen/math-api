@@ -2,6 +2,7 @@ from flask import Flask, request, jsonify
 from flask_parameter_validation import Query
 import math
 import datetime
+import json
 
 app = Flask(__name__)
 
@@ -133,6 +134,12 @@ def giaithua():
         for i in range(1, number + 1):
             giaithua *= i
         return jsonify({'result': giaithua})
+
+@app.route('/sort-desc', methods=['GET'])
+def array():
+        array = request.args.get('array')
+        array_desc = sorted(json.loads(array))
+        return jsonify({'result': array_desc})
 
 if __name__ == "__main__":
     app.run(debug=True)
