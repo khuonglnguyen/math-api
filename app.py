@@ -136,10 +136,16 @@ def giaithua():
         return jsonify({'result': giaithua})
 
 @app.route('/sort-desc', methods=['GET'])
-def array():
+def array1():
         array = request.args.get('array')
         array_desc = sorted(json.loads(array))
         return jsonify({'result': array_desc})
+
+@app.route('/sort-asc', methods=['GET'])
+def array2():
+        array = request.args.get('array')
+        array_asc = sorted(json.loads(array), reverse=True)
+        return jsonify({'result': array_asc})
 
 if __name__ == "__main__":
     app.run(debug=True)
