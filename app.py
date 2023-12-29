@@ -147,5 +147,15 @@ def array2():
         array_asc = sorted(json.loads(array), reverse=True)
         return jsonify({'result': array_asc})
 
+@app.route('/currency', methods=['GET'])
+def currency():
+    From = 'VND' 
+    to = 'USA'
+    value = request.args.get('value', type=float)
+    Tien_viet = 23000
+    result = round(value / Tien_viet,1)
+    return jsonify({'result': f'{result}'})
+
+
 if __name__ == "__main__":
     app.run(debug=True)
