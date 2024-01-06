@@ -155,12 +155,12 @@ def currency():
     ti_le_VND = 23000
     if From == 'VND' and to == 'USD':
         result_VND_to_USD = round(value / ti_le_VND,1)
-        return jsonify({'result': f'{result_VND_to_USD}'})
+        return jsonify({'result': f'{result_VND_to_USD}'}), 200
     elif From == 'USD' and to == 'VND':
         result_USD_to_VND = value * ti_le_VND
-        return jsonify({'result': f'{result_USD_to_VND}'})
+        return jsonify({'result': f'{result_USD_to_VND}'}), 200
     else:
-        return jsonify({'error': 'Invalid currency conversion'})
+        return jsonify({'error': 'Invalid currency conversion'}), 400
 
 
 if __name__ == "__main__":
