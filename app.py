@@ -149,12 +149,18 @@ def array2():
 
 @app.route('/currency', methods=['GET'])
 def currency():
-    From = 'VND' 
-    to = 'USA'
+    From = request.args.get('From', type=str)
+    to = request.args.get('to', type=str)
     value = request.args.get('value', type=float)
-    Tien_viet = 23000
-    result = round(value / Tien_viet,1)
-    return jsonify({'result': f'{result}'})
+    ti_le_VND = 23000
+    if From == 'VND' and to == 'USA':
+        result_VND_to_USA = round(value / ti_le_VND,1)
+        return jsonify({'result': f'{result_VND_to_USA}'})
+    elif From == 'USA' and to == 'VND':
+        result_USA_to_VND = value * ti_le_VND
+        return jsonify({'result': f'{result_USA_to_VND}'})
+    else:
+        return jsonify({'error': 'Invalid currency conversion'})
 
 
 if __name__ == "__main__":
