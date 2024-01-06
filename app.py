@@ -162,6 +162,14 @@ def currency():
     else:
         return jsonify({'error': 'Invalid currency conversion'}), 400
 
+@app.route('/count-number', methods=['GET'])
+def count_number():
+    number = request.args.get('number', type=str)
+    if not number.isnumeric():
+        return jsonify({'error': 'Invalid number'}), 400
+    else:
+        result = len(number) 
+        return jsonify({'result': f'{result}'}), 200
 
 if __name__ == "__main__":
     app.run(debug=True)
