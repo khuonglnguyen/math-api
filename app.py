@@ -149,7 +149,7 @@ def array2():
 
 @app.route('/currency', methods=['GET'])
 def currency():
-    From = request.args.get('From', type=str)
+    From = request.args.get('from', type=str)
     to = request.args.get('to', type=str)
     value = request.args.get('value', type=float)
     ti_le_VND = 23000
